@@ -2,12 +2,26 @@ This repository contains a Dockerfile to assemble a JupyterLab image (image base
 
 
 Installed software:
-  -JupyterLab/Jupyternotebook:
-  -Anaconda:
+
+
+  -JupyterLab/Jupyternotebook
+  
+  
+  -Anaconda
+  
+  
   -Python3
+  
+  
   -Opencv
+  
+  
   -Tensorflow
+  
+  
   -R
+  
+  
   -rsimmer
   
   
