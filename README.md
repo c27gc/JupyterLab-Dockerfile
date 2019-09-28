@@ -27,6 +27,7 @@ This repository contains a Dockerfile to assemble a JupyterLab image (image base
   
   
   
-# Session Password 
+# Session
+http://localhost:4000/
 pass: jupyter.123
   
