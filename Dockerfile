@@ -23,9 +23,9 @@ WORKDIR /home/dev/
 RUN chmod a+rwx /home/dev/
 
 #Installing Anaconda
-RUN wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
-RUN sh Anaconda3-2019.07-Linux-x86_64.sh -b
-RUN rm Anaconda3-2019.07-Linux-x86_64.sh
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh
+RUN sh Anaconda3-2021.05-Linux-x86_64.sh -b
+RUN rm Anaconda3-2021.05-Linux-x86_64.sh
 ENV PATH /home/dev/anaconda3/bin:$PATH
 RUN conda update conda
 RUN conda update anaconda
@@ -36,7 +36,7 @@ RUN sudo apt install -y libsm6 libxext6 libxrender-dev
 RUN pip install opencv-python
 
 #Installing TensorFlow
-RUN pip install tensorflow==2.0.0-rc0
+RUN pip install tensorflow
 
 #Installing JupyterLab
 RUN conda install -c anaconda jupyter \
