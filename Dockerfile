@@ -1,9 +1,9 @@
 #Dockerfile created by Carlos E. González C. at bloomcker
 #Data Science environment
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 #Metadata
-LABEL maintainer="Carlos E. Gonzalez C. carlos@bloomcker.io"
+LABEL maintainer="Carlos Gonzalez Camacho carlos@bloomcker.io"
 LABEL build_date="13/07/2022"
 
 #Updating Ubuntu
@@ -14,7 +14,7 @@ RUN apt-get update \
 RUN apt-get install -y wget bzip2 nano
 
 #Setting-up root and dev users
-Run apt-get -y install sudo
+RUN apt-get -y install sudo
 RUN adduser --disabled-password --gecos '' dev
 RUN adduser dev sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
@@ -23,7 +23,8 @@ WORKDIR /home/dev/
 RUN chmod a+rwx /home/dev/
 
 #Installing openMPI
-RUN sudo apt-get update && sudo apt-get install libopenmpi-dev
+RUN sudo apt-get update -y
+RUN sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install libopenmpi-dev
 
 #Installing Anaconda
 RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
