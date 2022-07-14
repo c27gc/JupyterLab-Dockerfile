@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 
 #Metadata
 LABEL maintainer="Carlos E. Gonzalez C. carlos@bloomcker.io"
-LABEL build_date="08/30/2019"
+LABEL build_date="13/07/2022"
 
 #Updating Ubuntu
 RUN apt-get update \
@@ -22,14 +22,23 @@ USER dev
 WORKDIR /home/dev/
 RUN chmod a+rwx /home/dev/
 
+#Installing openMPI
+RUN sudo apt-get update && sudo apt-get install libopenmpi-dev
+
 #Installing Anaconda
-RUN wget https://repo.anaconda.com/archive/Anaconda3-2021.05-Linux-x86_64.sh
-RUN sh Anaconda3-2021.05-Linux-x86_64.sh -b
-RUN rm Anaconda3-2021.05-Linux-x86_64.sh
+RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
+RUN sh Anaconda3-2022.05-Linux-x86_64.sh -b
+RUN rm Anaconda3-2022.05-Linux-x86_64.sh
 ENV PATH /home/dev/anaconda3/bin:$PATH
 RUN conda update conda
 RUN conda update anaconda
 RUN conda update --all
+
+#Installing python 3.6 
+RUN conda install python=3.6
+
+#update pip
+RUN pip install --upgrade pip
 
 #Installing opencv
 RUN sudo apt install -y libsm6 libxext6 libxrender-dev
@@ -37,6 +46,9 @@ RUN pip install opencv-python
 
 #Installing TensorFlow
 RUN pip install tensorflow
+
+#Installing pytorch
+RUN conda install pytorch cpuonly -c pytorch
 
 #Installing JupyterLab
 RUN conda install -c anaconda jupyter \
@@ -64,6 +76,7 @@ RUN Rscript -e "install.packages(c(\"devtools\", \"testthat\", \"roxygen2\"), re
 RUN sudo apt -y install git
 RUN R -e "devtools::install_github('IRkernel/IRkernel')"
 RUN R -e "IRkernel::installspec()"
+
 
 CMD ["jupyter", "lab", "--allow-root", "--notebook-dir=/home/dev/notebooks", "--ip='*'", "--port=8888", "--no-browser"]
 
