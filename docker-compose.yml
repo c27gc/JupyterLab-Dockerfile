@@ -3,4 +3,4 @@ services:
   jnotebook:
     build: .
     ports:
-      - "8888:8888"
+      - "4000:4000"
