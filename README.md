@@ -18,13 +18,14 @@ This repository contains a Dockerfile to assemble a JupyterLab image (image base
   
   
   -Tensorflow
-  
+
+  -pytorch
   
   -R
-  
-  
+
   -rsimmer
-  
+
+  -openMPI
   
   
 # Session
